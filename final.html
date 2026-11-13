@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasthupula Purnasai | Assistant Professor & DFIR Specialist</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar & Cyber Grid Background */
+        .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+        }
+        .light .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-resume, #printable-resume * {
+                visibility: visible;
+            }
+            #printable-resume {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #10b981;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-white transition-colors duration-300 bg-grid-pattern min-h-screen flex flex-col">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand / Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-600 flex items-center justify-center text-white font-mono font-bold text-lg shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                    VP
+                </div>
+                <div>
+                    <span class="font-bold tracking-tight text-slate-900 dark:text-white block leading-none">Vasthupula Purnasai</span>
+                    <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400">Asst. Professor & DFIR</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-1.5 text-sm font-medium">
+                <a href="#about" class="px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">About</a>
+                <a href="#resume" class="px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Resume</a>
+                <a href="#m365-forensics" class="px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">M365 & Cloud Forensics</a>
+                <a href="#tools-arsenal" class="px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Tools Arsenal</a>
+                <a href="#experience" class="px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Experience</a>
+                <a href="#projects" class="px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Projects</a>
+                <a href="#contact" class="px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button onclick="openResumeModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500 hover:text-white transition-all">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                    CV / Resume
+                </button>
+                <button id="theme-toggle" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-emerald-500 border border-slate-200 dark:border-slate-800 transition-colors">
+                    <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 hidden"></i>
+                    <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4"></i>
+                </button>
+                <button id="mobile-menu-btn" aria-label="Open Menu" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 pt-2 pb-4 space-y-1">
+            <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-900">About & Terminal</a>
+            <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-900">Experience</a>
+            <a href="#m365-forensics" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-900">M365 & Cloud Forensics</a>
+            <a href="#tools-arsenal" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-900">DFIR Tools Arsenal</a>
+            <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-900">Projects & Ransomware Lab</a>
+            <a href="#education" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-900">Education</a>
+            <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-900">Skills Matrix</a>
+            <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-900">Contact</a>
+            <div class="pt-2">
+                <button onclick="openResumeModal()" class="w-full flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-mono font-semibold bg-emerald-600 text-white">
+                    <i data-lucide="file-text" class="w-4 h-4"></i> View / Print Resume
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section id="about" class="relative pt-10 pb-20 md:pt-16 md:pb-24 overflow-hidden">
+            <!-- Ambient Glow -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-emerald-500/10 dark:bg-emerald-500/15 blur-[110px] rounded-full pointer-events-none"></div>
+            <div class="absolute top-1/3 right-10 w-[300px] h-[250px] bg-cyan-500/10 dark:bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Left Column: Hero Bio & Intro -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Status Badge -->
+                        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-mono">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            Assistant Professor @ Malla Reddy University, Hyderabad
+                        </div>
+
+                        <!-- Main Title -->
+                        <div class="space-y-3">
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+                                Vasthupula <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500">Purnasai</span>
+                            </h1>
+                            <p class="text-lg sm:text-xl font-medium text-slate-600 dark:text-slate-300 flex flex-wrap items-center gap-2">
+                                <span>Academic Educator</span>
+                                <span class="text-emerald-500">•</span>
+                                <span>DFIR Specialist</span>
+                                <span class="text-emerald-500">•</span>
+                                <span>Cybersecurity Researcher</span>
+                            </p>
+                        </div>
+
+                        <!-- Bio Description -->
+                        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Bridging academic excellence and real-world cyber defense. Currently serving as an <strong class="text-slate-900 dark:text-white font-semibold">Assistant Professor at Malla Reddy University</strong>, specializing in <strong class="text-slate-900 dark:text-white font-semibold">Digital Forensics, Incident Response (DFIR), SOC Workflows, and AI in Forensic Science</strong>. Hold an M.Sc. in Digital Forensics & Information Security from <strong class="text-slate-900 dark:text-white font-semibold">NFSU Gandhinagar</strong> and hands-on industry experience investigating complex security breaches at <strong class="text-slate-900 dark:text-white font-semibold">Arete IR</strong>.
+                        </p>
+
+                        <!-- Key Highlights Pills -->
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-200/70 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-emerald-500"></i> M.Sc. DFIS (NFSU)
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-200/70 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                                <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-cyan-500"></i> Ex-Arete IR (DFIR)
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-200/70 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                                <i data-lucide="cloud-lightning" class="w-3.5 h-3.5 text-emerald-500"></i> M365 & BEC Forensics
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-200/70 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-3.5 h-3.5 text-cyan-500"></i> AI in Forensics
+                            </span>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-600/25 transition-all">
+                                <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+                                View Projects & Labs
+                            </a>
+                            <a href="#m365-forensics" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-800 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all">
+                                <i data-lucide="cloud-cog" class="w-4 h-4 text-cyan-500"></i>
+                                M365 Cloud Forensics
+                            </a>
+                            <button onclick="openResumeModal()" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl font-mono text-xs font-semibold bg-slate-200/80 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 border border-slate-300 dark:border-slate-800 transition-all">
+                                <i data-lucide="printer" class="w-4 h-4 text-emerald-500"></i>
+                                View / Print Resume
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Forensic CLI Terminal Widget -->
+                    <div class="lg:col-span-5">
+                        <div class="rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden">
+                            <!-- Terminal Window Header -->
+                            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                                    <span class="ml-2 font-mono text-xs text-slate-400">purnasai@dfir-workstation:~</span>
+                                </div>
+                                <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">INTERACTIVE SHELL</span>
+                            </div>
+
+                            <!-- Quick Command Buttons -->
+                            <div class="bg-slate-900/90 px-4 py-2.5 border-b border-slate-800/80 flex flex-wrap items-center gap-1.5">
+                                <span class="text-[11px] font-mono text-slate-400 mr-1">Run query:</span>
+                                <button onclick="runTerminalCmd('whoami')" class="px-2 py-1 rounded text-xs font-mono bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white transition-colors">whoami</button>
+                                <button onclick="runTerminalCmd('faculty')" class="px-2 py-1 rounded text-xs font-mono bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white transition-colors">faculty --mru</button>
+                                <button onclick="runTerminalCmd('dfir')" class="px-2 py-1 rounded text-xs font-mono bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white transition-colors">dfir --arete</button>
+                                <button onclick="runTerminalCmd('m365')" class="px-2 py-1 rounded text-xs font-mono bg-slate-800 hover:bg-cyan-600 text-cyan-300 hover:text-white transition-colors">cloud --m365</button>
+                                <button onclick="runTerminalCmd('tools')" class="px-2 py-1 rounded text-xs font-mono bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white transition-colors">tools --forensics</button>
+                                <button onclick="runTerminalCmd('projects')" class="px-2 py-1 rounded text-xs font-mono bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white transition-colors">ls ./projects</button>
+                                <button onclick="runTerminalCmd('contact')" class="px-2 py-1 rounded text-xs font-mono bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white transition-colors">contact</button>
+                            </div>
+
+                            <!-- Terminal Output Body -->
+                            <div id="terminal-output" class="p-5 font-mono text-xs sm:text-sm text-slate-300 space-y-3 h-[290px] overflow-y-auto leading-relaxed">
+                                <div class="text-slate-500">// Forensic Profile Verification Utility v2.6</div>
+                                <div>
+                                    <span class="text-emerald-400">purnasai@mru-dfir</span>:<span class="text-cyan-400">~</span>$ <span id="terminal-cmd-text" class="text-white font-semibold">whoami --verbose</span>
+                                </div>
+                                <div id="terminal-response" class="space-y-1.5 text-slate-300 border-l-2 border-emerald-500/40 pl-3">
+                                    <div><span class="text-emerald-400">Name:</span> Vasthupula Purnasai</div>
+                                    <div><span class="text-emerald-400">Current Designation:</span> Assistant Professor</div>
+                                    <div><span class="text-emerald-400">Institution:</span> Malla Reddy University, Hyderabad</div>
+                                    <div><span class="text-emerald-400">Education:</span> M.Sc. DFIS @ NFSU Gandhinagar | B.Sc. (Hons) Digital Forensics @ MRU</div>
+                                    <div><span class="text-emerald-400">Core Focus:</span> Digital Forensics, Incident Response, SOC Automation & AI in Forensics</div>
+                                </div>
+                                <div class="pt-1">
+                                    <span class="text-emerald-400">purnasai@mru-dfir</span>:<span class="text-cyan-400">~</span>$ <span class="terminal-cursor"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- DEDICATED ON-PAGE RESUME / CV SECTION -->
+        <section id="resume" class="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-slate-100/70 dark:bg-slate-900/50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                            <i data-lucide="file-badge" class="w-4 h-4"></i> Official Curriculum Vitae
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Resume / CV</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                            Complete academic and industry profile of Vasthupula Purnasai.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="printResumeSheet()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-mono font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20 transition-all">
+                            <i data-lucide="printer" class="w-4 h-4"></i>
+                            Print / Save Official Resume PDF
+                        </button>
+                        <button onclick="openResumeModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-semibold bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition-all">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-emerald-500"></i>
+                            Open Fullscreen Print View
+                        </button>
+                    </div>
+                </div>
+
+                <!-- On-Page Interactive Resume Sheet -->
+                <div class="rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-xl p-6 sm:p-10 space-y-8">
+                    
+                    <!-- Resume Header & Contact -->
+                    <div class="border-b border-slate-200 dark:border-slate-800 pb-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                                VASTHUPULA PURNASAI
+                            </h3>
+                            <p class="text-sm sm:text-base font-semibold text-emerald-600 dark:text-emerald-400 mt-1">
+                                Assistant Professor (Digital Forensics) @ Malla Reddy University | M.Sc. DFIS (NFSU)
+                            </p>
+                            <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 inline mr-1 text-emerald-500"></i>1-1-66/984, Urban Colony, Yadadri Bhongir, Telangana
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                            <a href="tel:9347384179" class="px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500 flex items-center gap-2">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-500 shrink-0"></i> 9347384179
+                            </a>
+                            <a href="mailto:vasthupulapurna@gmail.com" class="px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500 flex items-center gap-2 truncate">
+                                <i data-lucide="mail" class="w-3.5 h-3.5 text-emerald-500 shrink-0"></i> vasthupulapurna@gmail.com
+                            </a>
+                            <a href="https://www.linkedin.com/in/purna-sai-vasthupula-983ab7243/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-cyan-500 flex items-center gap-2 truncate">
+                                <i data-lucide="linkedin" class="w-3.5 h-3.5 text-cyan-500 shrink-0"></i> in/purna-sai-vasthupula-983ab7243
+                            </a>
+                            <a href="https://github.com/vasthupulasai" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500 flex items-center gap-2 truncate">
+                                <i data-lucide="github" class="w-3.5 h-3.5 text-emerald-500 shrink-0"></i> github.com/vasthupulasai
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div>
+                        <h4 class="text-xs font-mono uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400 mb-2 flex items-center gap-2">
+                            <i data-lucide="user-check" class="w-4 h-4"></i> Summary
+                        </h4>
+                        <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Assistant Professor at Malla Reddy University and M.Sc. Digital Forensics and Information Security graduate with hands-on experience in Microsoft 365 and Google Workspace security investigations through industry internship experience. Strong foundation in security monitoring, SIEM tools, digital forensics, threat detection, log analysis, and incident response, complemented by practical exposure to Business Email Compromise (BEC) investigations, Unified Audit Logs, mailbox rule analysis, and root cause analysis.
+                        </p>
+                    </div>
+
+                    <!-- Skills Matrix from Resume -->
+                    <div>
+                        <h4 class="text-xs font-mono uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400 mb-3 flex items-center gap-2">
+                            <i data-lucide="cpu" class="w-4 h-4"></i> Technical Skills
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                <div class="text-xs font-mono font-bold text-slate-900 dark:text-white mb-1">Cybersecurity & Forensics</div>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                    Incident Response, Microsoft 365 Security, Google Workspace Investigations, Business Email Compromise (BEC), Digital Forensics, Threat Detection, Root Cause Analysis, Email Header Analysis, Evidence Collection and Analysis, OSINT.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                <div class="text-xs font-mono font-bold text-slate-900 dark:text-white mb-1">Tools & Platforms</div>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                    SIEM (Wazuh, Splunk), Wireshark, Kibana, Autopsy, Magnet Axiom, Volatility, FTK.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                <div class="text-xs font-mono font-bold text-slate-900 dark:text-white mb-1">Programming & Scripting</div>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                    Python (Fundamentals), Bash.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                <div class="text-xs font-mono font-bold text-slate-900 dark:text-white mb-1">Other Core Competencies</div>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                    Networking, Linux, Log Analysis, Incident Documentation, Timeline Creation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Qualification Table -->
+                    <div>
+                        <h4 class="text-xs font-mono uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400 mb-3 flex items-center gap-2">
+                            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Academic Qualification
+                        </h4>
+                        <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+                            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                                <thead>
+                                    <tr class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 font-mono text-xs uppercase">
+                                        <th class="py-3 px-4 border-b border-slate-200 dark:border-slate-800">Degree / Qualification</th>
+                                        <th class="py-3 px-4 border-b border-slate-200 dark:border-slate-800">Institution / Board</th>
+                                        <th class="py-3 px-4 border-b border-slate-200 dark:border-slate-800 text-right">Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                                        <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">M.Sc. Digital Forensics and Information Security</td>
+                                        <td class="py-3 px-4">National Forensic Sciences University</td>
+                                        <td class="py-3 px-4 font-mono text-right">2024–2026</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                                        <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">B.Sc. (Honours) Digital Forensics</td>
+                                        <td class="py-3 px-4">Malla Reddy University</td>
+                                        <td class="py-3 px-4 font-mono text-right">2020–2024</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                                        <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">Intermediate BPC</td>
+                                        <td class="py-3 px-4">Sree Vaishnavi Junior College</td>
+                                        <td class="py-3 px-4 font-mono text-right">2018–2020</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                                        <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">SSC</td>
+                                        <td class="py-3 px-4">SSC Board of Telangana</td>
+                                        <td class="py-3 px-4 font-mono text-right">2018</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Work Experience / Internships -->
+                    <div>
+                        <h4 class="text-xs font-mono uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400 mb-3 flex items-center gap-2">
+                            <i data-lucide="briefcase" class="w-4 h-4"></i> Work Experience & Internships
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-emerald-500/30">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                    <h5 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Assistant Professor – Digital Forensics | Malla Reddy University</h5>
+                                    <span class="px-2.5 py-0.5 rounded text-xs font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-semibold">Current (2026–Present)</span>
+                                </div>
+                                <ul class="list-disc list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                                    <li>Teaching undergraduate Digital Forensics Science modules, AI in Forensic Science domains, cloud & host forensics labs, and mentoring student research projects.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                    <h5 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Cyber Security Intern | Arete IR LLP</h5>
+                                    <span class="px-2.5 py-0.5 rounded text-xs font-mono bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 font-semibold">01/2026 – 07/2026</span>
+                                </div>
+                                <ul class="list-disc list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5">
+                                    <li>Investigated Microsoft 365 Business Email Compromise (BEC) and Google Workspace incidents by analyzing authentication logs, email metadata, audit logs, and mailbox artifacts to determine attacker activity, root cause, and incident impact. Analyzed Microsoft 365 Unified Audit Logs to identify suspicious user activities.</li>
+                                    <li>Performed forensic analysis of Microsoft 365 Unified Audit Logs to identify unauthorized mailbox access, suspicious user activities, and potential account compromise.</li>
+                                    <li>Investigated malicious mailbox rules, inbox forwarding, email headers, and message traces to determine phishing techniques and attacker persistence mechanisms.</li>
+                                    <li>Conducted root cause analysis by correlating multiple evidence sources, documenting findings, and building investigation timelines.</li>
+                                    <li>Assisted senior analysts in incident response, evidence collection, case documentation, and remediation recommendations.</li>
+                                    <li>Validated suspicious login events, mailbox access, and configuration changes to accurately determine the scope and impact of security incidents.</li>
+                                </ul>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                        <h5 class="font-bold text-slate-900 dark:text-white text-sm">Virtual Internship | CDAC Noida</h5>
+                                        <span class="px-2 py-0.5 rounded text-xs font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">01/2025 – 03/2025</span>
+                                    </div>
+                                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                                        <li>Completed training in ethical hacking and penetration testing.</li>
+                                        <li>Gained hands-on experience dealing with real-time cyber threats.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                        <h5 class="font-bold text-slate-900 dark:text-white text-sm">Intern / Trainee | Clues Team Telangana Police</h5>
+                                        <span class="px-2 py-0.5 rounded text-xs font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">01/2023 – 03/2023</span>
+                                    </div>
+                                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                                        <li>Worked with the Clues Team, gaining knowledge about traditional crime scenarios such as theft, robbery, and assault.</li>
+                                        <li>Experience working in team-based investigations.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects & Certifications Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Projects List -->
+                        <div>
+                            <h4 class="text-xs font-mono uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400 mb-3 flex items-center gap-2">
+                                <i data-lucide="folder-git-2" class="w-4 h-4"></i> Key Projects
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                    <div class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Ransomware Simulator and Detection Lab</div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Developed a controlled lab environment to simulate ransomware attacks and built detection mechanisms to identify their behavior and indicators.</p>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                    <div class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Automated Incident Response Playbook Generator</div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Engineered a system to automatically create incident response playbooks for various threats, streamlining security procedures and response actions.</p>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                    <div class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">ChainVigil – Software Supply Chain Incident Investigation System</div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Structured Django-based digital forensic investigation framework for software supply chain compromise analysis.</p>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                                    <div class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">AI Lyrics Generator Web App</div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Created a web application that utilizes an AI model to generate original song lyrics, demonstrating skills in both web development and machine learning.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certifications List -->
+                        <div>
+                            <h4 class="text-xs font-mono uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400 mb-3 flex items-center gap-2">
+                                <i data-lucide="award" class="w-4 h-4"></i> Certifications
+                            </h4>
+                            <div class="space-y-2.5">
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                                    <i data-lucide="badge-check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                                    <span class="text-xs sm:text-sm text-slate-800 dark:text-slate-200"><strong>CDAC-NOIDA</strong> – Ethical Hacking and Penetration Testing</span>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                                    <i data-lucide="badge-check" class="w-4 h-4 text-cyan-500 shrink-0"></i>
+                                    <span class="text-xs sm:text-sm text-slate-800 dark:text-slate-200"><strong>Antisyphon Training</strong> – SOC Detection Engineering Crash Course</span>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                                    <i data-lucide="badge-check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                                    <span class="text-xs sm:text-sm text-slate-800 dark:text-slate-200"><strong>Blue Team Labs</strong> – Active Defense and Cyber Deception</span>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                                    <i data-lucide="badge-check" class="w-4 h-4 text-cyan-500 shrink-0"></i>
+                                    <span class="text-xs sm:text-sm text-slate-800 dark:text-slate-200"><strong>Blue Team Labs</strong> – Investigation of Insider Threats with Windows Forensics</span>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                                    <i data-lucide="badge-check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                                    <span class="text-xs sm:text-sm text-slate-800 dark:text-slate-200"><strong>Blue Team Labs</strong> – Hands-on Blue Team Exercises</span>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                                    <i data-lucide="badge-check" class="w-4 h-4 text-cyan-500 shrink-0"></i>
+                                    <span class="text-xs sm:text-sm text-slate-800 dark:text-slate-200"><strong>Security Blue Team</strong> – OSINT Fundamentals</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE TIMELINE & ACADEMIC TEACHING SECTION -->
+        <section id="experience" class="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Heading -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                            <i data-lucide="briefcase" class="w-4 h-4"></i> Career & Academic Journey
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Professional Experience</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md">
+                        Combining academic instruction at Malla Reddy University with front-line Incident Response and Digital Forensics experience.
+                    </p>
+                </div>
+
+                <!-- Experience Timeline Cards -->
+                <div class="space-y-8 relative before:absolute before:top-4 before:bottom-4 before:left-4 md:before:left-8 before:w-0.5 before:bg-gradient-to-b before:from-emerald-500 before:via-cyan-500 before:to-slate-300 dark:before:to-slate-800">
+                    
+                    <!-- Role 1: Assistant Professor -->
+                    <div class="relative pl-12 md:pl-20">
+                        <!-- Timeline Node -->
+                        <div class="absolute left-0.5 md:left-4 top-1.5 w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-lg shadow-emerald-500/30 ring-4 ring-white dark:ring-slate-950">
+                            <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                        </div>
+
+                        <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-500/40 dark:border-emerald-500/30 shadow-sm hover:shadow-xl transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 mb-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Current Position
+                                    </span>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Assistant Professor</h3>
+                                    <p class="text-emerald-600 dark:text-emerald-400 font-medium text-sm sm:text-base">
+                                        Malla Reddy University • Hyderabad, Telangana
+                                    </p>
+                                </div>
+                                <div class="text-xs font-mono text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg">
+                                    Academic Faculty (Alma Mater)
+                                </div>
+                            </div>
+
+                            <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base mb-5 leading-relaxed">
+                                Returned to my undergraduate alma mater as an Assistant Professor to mentor the next generation of digital forensics investigators and cybersecurity professionals, integrating practical industry DFIR methodologies into university coursework.
+                            </p>
+
+                            <!-- Courses & Academic Focus Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-5">
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800">
+                                    <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold text-sm mb-1">
+                                        <i data-lucide="brain-circuit" class="w-4 h-4"></i> AI in Forensic Science
+                                    </div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Delivering lectures and presentations on AI applications across digital, biological, and pattern evidence domains.</p>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800">
+                                    <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-semibold text-sm mb-1">
+                                        <i data-lucide="network" class="w-4 h-4"></i> Social Network Analysis
+                                    </div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Teaching graph theory, relational data modeling, centrality metrics, and link analysis for cyber investigations.</p>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800">
+                                    <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold text-sm mb-1">
+                                        <i data-lucide="hard-drive" class="w-4 h-4"></i> Core DFIR & Security Labs
+                                    </div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Guiding hands-on lab sessions in evidence preservation, incident triage, cloud forensics, and cryptography.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Digital Forensics Science</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">AI & Forensic Domains</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Social Network Analysis</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Curriculum Design</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Student Research Mentorship</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role 2: Arete IR Internship -->
+                    <div class="relative pl-12 md:pl-20">
+                        <!-- Timeline Node -->
+                        <div class="absolute left-0.5 md:left-4 top-1.5 w-8 h-8 rounded-xl bg-cyan-600 text-white flex items-center justify-center shadow-lg shadow-cyan-600/30 ring-4 ring-white dark:ring-slate-950">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        </div>
+
+                        <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-cyan-500/40 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Cyber Security Intern</h3>
+                                    <p class="text-cyan-600 dark:text-cyan-400 font-medium text-sm sm:text-base">
+                                        Arete IR LLP • Hyderabad, Telangana
+                                    </p>
+                                </div>
+                                <div class="text-xs font-mono text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg">
+                                    01/2026 – 07/2026
+                                </div>
+                            </div>
+
+                            <ul class="space-y-2 text-slate-600 dark:text-slate-300 text-sm sm:text-base mb-5 list-disc list-inside">
+                                <li>Investigated Microsoft 365 Business Email Compromise (BEC) and Google Workspace incidents by analyzing authentication logs, email metadata, audit logs, and mailbox artifacts to determine attacker activity, root cause, and incident impact.</li>
+                                <li>Performed forensic analysis of Microsoft 365 Unified Audit Logs to identify unauthorized mailbox access, suspicious user activities, and potential account compromise.</li>
+                                <li>Investigated malicious mailbox rules, inbox forwarding, email headers, and message traces to determine phishing techniques and attacker persistence mechanisms.</li>
+                                <li>Conducted root cause analysis by correlating multiple evidence sources, documenting findings, and building investigation timelines.</li>
+                                <li>Assisted senior analysts in incident response, evidence collection, case documentation, and remediation recommendations, validating suspicious login events and configuration changes.</li>
+                            </ul>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Microsoft 365 BEC</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Google Workspace Forensics</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Unified Audit Logs</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Root Cause Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role 3: CDAC Noida Virtual Internship -->
+                    <div class="relative pl-12 md:pl-20">
+                        <div class="absolute left-0.5 md:left-4 top-1.5 w-8 h-8 rounded-xl bg-purple-600 text-white flex items-center justify-center shadow-lg shadow-purple-600/30 ring-4 ring-white dark:ring-slate-950">
+                            <i data-lucide="terminal" class="w-4 h-4"></i>
+                        </div>
+                        <div class="p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-purple-500/40 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                <div>
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Virtual Internship – Ethical Hacking & Penetration Testing</h3>
+                                    <p class="text-purple-600 dark:text-purple-400 font-medium text-sm">CDAC Noida</p>
+                                </div>
+                                <div class="text-xs font-mono text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg">
+                                    01/2025 – 03/2025
+                                </div>
+                            </div>
+                            <ul class="space-y-1.5 text-slate-600 dark:text-slate-300 text-sm list-disc list-inside">
+                                <li>Completed training in ethical hacking and penetration testing.</li>
+                                <li>Gained hands-on experience dealing with real-time cyber threats.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 4: Clues Team Telangana Police -->
+                    <div class="relative pl-12 md:pl-20">
+                        <div class="absolute left-0.5 md:left-4 top-1.5 w-8 h-8 rounded-xl bg-amber-600 text-white flex items-center justify-center shadow-lg shadow-amber-600/30 ring-4 ring-white dark:ring-slate-950">
+                            <i data-lucide="search" class="w-4 h-4"></i>
+                        </div>
+                        <div class="p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-amber-500/40 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                <div>
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Intern / Trainee</h3>
+                                    <p class="text-amber-600 dark:text-amber-400 font-medium text-sm">Clues Team Telangana Police</p>
+                                </div>
+                                <div class="text-xs font-mono text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg">
+                                    01/2023 – 03/2023
+                                </div>
+                            </div>
+                            <ul class="space-y-1.5 text-slate-600 dark:text-slate-300 text-sm list-disc list-inside">
+                                <li>Worked with the Clues Team, gaining knowledge about traditional crime scenarios such as theft, robbery, and assault.</li>
+                                <li>Experience working in team-based field investigations and evidence handling.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- DEDICATED SECTION: MICROSOFT 365 & CLOUD FORENSICS INVESTIGATIONS -->
+        <section id="m365-forensics" class="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 mb-2">
+                            <i data-lucide="cloud-lightning" class="w-4 h-4"></i> Cloud Identity & Telemetry Forensics
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Microsoft 365 & Cloud Investigations</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md">
+                        Specialized expertise in investigating Business Email Compromise (BEC), Entra ID identity breaches, OAuth illicit consent grants, and cloud data exfiltration.
+                    </p>
+                </div>
+
+                <!-- M365 Pillars Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    
+                    <!-- Pillar 1: Unified Audit Log (UAL) & Purview Audit -->
+                    <div class="p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all shadow-sm">
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-500 flex items-center justify-center shrink-0">
+                                <i data-lucide="file-search" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">Purview & UAL</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Unified Audit Log (UAL) & BEC Forensics</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                            Deep-dive correlation of Microsoft Purview Unified Audit Logs to determine blast radius, mailbox access scope, and unauthorized data exfiltration during Business Email Compromise (BEC) incidents.
+                        </p>
+                        <div class="space-y-2 text-xs font-mono bg-slate-50 dark:bg-slate-950 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-emerald-500">▸</span> <span><strong>Exchange Operations:</strong> MailItemsAccessed, SendAs, UpdateInboxRules, New-InboxRule</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-emerald-500">▸</span> <span><strong>SharePoint/OneDrive:</strong> FileDownloaded, FileAccessed,FileSyncDownloadedFull</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-emerald-500">▸</span> <span><strong>Persistence:</strong> OAuth2PermissionGrant, Consent to application, Add service principal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2: Microsoft Entra ID (Azure AD) Sign-In & Risk Logs -->
+                    <div class="p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition-all shadow-sm">
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 flex items-center justify-center shrink-0">
+                                <i data-lucide="fingerprint" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Entra ID / Azure AD</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Entra ID Identity & Token Replay Analysis</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                            Investigating interactive and non-interactive sign-in logs, service principal authentications, and AiTM (Adversary-in-the-Middle) session cookie theft across cloud tenants.
+                        </p>
+                        <div class="space-y-2 text-xs font-mono bg-slate-50 dark:bg-slate-950 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-cyan-500">▸</span> <span><strong>Session Tracking:</strong> CorrelationId, SessionId & UniqueTokenIdentifier pivoting</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-cyan-500">▸</span> <span><strong>Anomaly Hunting:</strong> Impossible travel, rogue ASN/VPS IPs, MFA fatigue & device registration</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-cyan-500">▸</span> <span><strong>Privilege Escalation:</strong> Role assignment changes, Global Admin elevation & Conditional Access bypass</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3: Exchange Online & Defender for Office 365 -->
+                    <div class="p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 transition-all shadow-sm">
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-500 flex items-center justify-center shrink-0">
+                                <i data-lucide="mail-warning" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">Exchange Online</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Exchange Online & Message Trace Forensics</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                            Uncovering stealthy attacker persistence inside compromised mailboxes, analyzing SMTP headers, and reconstructing lateral phishing campaigns across internal and external recipients.
+                        </p>
+                        <div class="space-y-2 text-xs font-mono bg-slate-50 dark:bg-slate-950 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-purple-500">▸</span> <span><strong>Persistence Mechanisms:</strong> Hidden Inbox Rules (PR_RULE_MSG_PROVIDER), SMTP forwarding & delegation</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-purple-500">▸</span> <span><strong>Header Authentication:</strong> SPF, DKIM, DMARC, ARC-Seal & X-Originating-IP verification</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-purple-500">▸</span> <span><strong>Transport Analysis:</strong> Exchange Transport Rules (ETR) & outbound spam/phishing blast scoping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 4: Cloud Evidence Acquisition & KQL Hunting -->
+                    <div class="p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 transition-all shadow-sm">
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center shrink-0">
+                                <i data-lucide="terminal-square" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">Acquisition & KQL</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Cloud Triage Automation & KQL Threat Hunting</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                            Rapid forensic collection and automated log parsing across Microsoft cloud environments using PowerShell modules, Graph API, and Kusto Query Language (KQL).
+                        </p>
+                        <div class="space-y-2 text-xs font-mono bg-slate-50 dark:bg-slate-950 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-amber-500">▸</span> <span><strong>Collection Tooling:</strong> Microsoft Extractor Suite, Hawk, CrowdStrike CRT & ExchangeOnlineManagement</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-amber-500">▸</span> <span><strong>KQL Hunting:</strong> Advanced queries in Microsoft Sentinel & Defender XDR (CloudAppEvents, SigninLogs)</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                <span class="text-amber-500">▸</span> <span><strong>Containment:</strong> Revoke-MgUserSignInSession, disabling rogue OAuth apps & mailbox lockouts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- DEDICATED SECTION: DIGITAL FORENSICS & INCIDENT RESPONSE TOOLS PROFICIENCY -->
+        <section id="tools-arsenal" class="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                            <i data-lucide="wrench" class="w-4 h-4"></i> Technical Arsenal
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Digital Forensics Tools Proficiency</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md">
+                        Hands-on operational proficiency with industry-standard commercial and open-source forensic suites across disk, memory, endpoint, cloud, and network investigations.
+                    </p>
+                </div>
+
+                <!-- 4-Column Categorized Tool Matrix -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Category 1: Disk, Dead-Box & Artifact Forensics -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                                <i data-lucide="hard-drive" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white">Disk, Dead-Box & Artifact Forensics</h3>
+                                <p class="text-xs font-mono text-slate-500">File System, Registry, Execution & Triage Parsing</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">KAPE (Kroll Artifact Parser & Extractor)</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Rapid forensic target collection & automated module execution</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Advanced</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Eric Zimmerman's EZ Tools Suite</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">MFTECmd, PECmd, AmcacheParser, EvtxECmd, Registry Explorer, Timeline Explorer</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Advanced</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Autopsy, EnCase & FTK Imager</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Bit-stream disk imaging (E01/RAW), file carving, deleted artifact recovery</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Core Suite</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Velociraptor</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">VQL-driven endpoint visibility, remote artifact collection & live hunting</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 shrink-0">Proficient</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Memory & Live Endpoint Forensics -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center">
+                                <i data-lucide="memory-stick" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white">Memory & Live System Forensics</h3>
+                                <p class="text-xs font-mono text-slate-500">Volatile RAM Analysis & Process Inspection</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Volatility 3 & Volatility 2</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Process hollowing detection (malfind), network sockets, injected DLLs &cmdline extraction</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Advanced</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">WinPMEM, DumpIt & Magnet RAM Capture</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Volatile memory acquisition with minimal system footprint</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Core Suite</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Windows Sysinternals Suite & Sysmon</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Procmon, Autoruns, Process Explorer, TCPView & granular Sysmon telemetry</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Advanced</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">System Informer (Process Hacker) & Hayabusa</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Live thread/token inspection and Sigma-based fast Windows event log timeline analysis</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 shrink-0">Proficient</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Cloud, SIEM & EDR / XDR Platforms -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center">
+                                <i data-lucide="radar" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white">Cloud Forensics, SIEM & EDR / XDR</h3>
+                                <p class="text-xs font-mono text-slate-500">Enterprise Threat Hunting & Cloud Log Triage</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Microsoft Purview, Entra ID & Defender XDR</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Unified Audit Logs (UAL), Entra sign-in forensics, Microsoft Extractor Suite & Hawk</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Advanced</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Enterprise EDRs (CrowdStrike Falcon & SentinelOne)</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Process tree reconstruction, deep visibility queries, host isolation & RTR triage</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">IR Ops</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Splunk, Microsoft Sentinel & ELK Stack</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">SPL & KQL query writing, multi-source log correlation & IOC sweeping</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 shrink-0">Proficient</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Network Forensics & Malware Analysis -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                                <i data-lucide="bug" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white">Network Forensics & Malware Analysis</h3>
+                                <p class="text-xs font-mono text-slate-500">Packet Inspection, Static/Dynamic Triage & YARA</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">Wireshark, NetworkMiner & Zeek</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">PCAP stream reconstruction, C2 beaconing identification & payload extraction</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Advanced</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">PEStudio, Detect It Easy (DIE) & Floss</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Static PE header inspection, import table analysis, entropy & obfuscated string extraction</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">Core Suite</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/70">
+                                <div>
+                                    <div class="font-semibold text-sm text-slate-900 dark:text-white">YARA, Ghidra & Sandbox Analysis (Any.Run)</div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Custom YARA rule authoring, behavioral detonation & ransomware routine analysis</p>
+                                </div>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 shrink-0">Proficient</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education" class="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                        <i data-lucide="award" class="w-4 h-4"></i> Academic Credentials
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Education</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Master's Degree -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between relative overflow-hidden group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 flex items-center justify-center">
+                                    <i data-lucide="shield" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold">2024–2026</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                                M.Sc. Digital Forensics and Information Security
+                            </h3>
+                            <p class="text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-3">
+                                National Forensic Sciences University (NFSU)
+                            </p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Advanced specialization in digital forensics, SIEM monitoring, incident response, M365 & cloud security investigations, and malware analysis.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-500">
+                            <span>Postgraduate Degree</span>
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bachelor's Degree -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between relative overflow-hidden group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-500 flex items-center justify-center">
+                                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-semibold">2020–2024</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                                B.Sc. (Honours) Digital Forensics
+                            </h3>
+                            <p class="text-sm font-medium text-cyan-600 dark:text-cyan-400 mb-3">
+                                Malla Reddy University
+                            </p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Comprehensive foundation in cyber crime investigation, file system forensics, OS internals, and information security.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-500">
+                            <span>Undergraduate Honours</span>
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Intermediate BPC -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between relative overflow-hidden">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-500 flex items-center justify-center">
+                                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-600 dark:text-purple-400 font-semibold">2018–2020</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                                Intermediate BPC
+                            </h3>
+                            <p class="text-sm font-medium text-purple-600 dark:text-purple-400 mb-3">
+                                Sree Vaishnavi Junior College
+                            </p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Higher secondary education in biological and physical sciences.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-500">
+                            <span>Higher Secondary</span>
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Schooling -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 transition-all flex flex-col justify-between relative overflow-hidden">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-slate-500/10 border border-slate-500/30 text-slate-600 dark:text-slate-300 flex items-center justify-center">
+                                    <i data-lucide="school" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold">2018</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                                SSC (Secondary School)
+                            </h3>
+                            <p class="text-sm font-medium text-slate-600 dark:text-slate-300 mb-3">
+                                SSC Board of Telangana (India Mission High School)
+                            </p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Completed secondary school certificate education.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-500">
+                            <span>Secondary School</span>
+                            <i data-lucide="check" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS & RESEARCH SECTION -->
+        <section id="projects" class="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                            <i data-lucide="cpu" class="w-4 h-4"></i> Applied Forensics & Engineering
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Projects & Academic Research</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md">
+                        Systems built to simulate ransomware behavior safely, modernize software supply-chain investigations, automate SOC playbooks, and advance forensic education.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Project 1 (NEW): Ransomware Behavior Simulator & Telemetry Lab -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-rose-500/30 dark:border-rose-500/30 hover:border-rose-500/70 transition-all flex flex-col justify-between p-6 sm:p-7 shadow-sm hover:shadow-xl relative overflow-hidden">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
+                                    Adversary Simulation & Telemetry Lab
+                                </span>
+                                <i data-lucide="shield-alert" class="w-5 h-5 text-rose-500"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                                Ransomware Behavior Simulator
+                            </h3>
+                            <p class="text-xs font-mono text-rose-600 dark:text-rose-400 mb-3">
+                                Safe-by-Design Ransomware Execution & Forensic Telemetry Observation Framework
+                            </p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                                Developed a controlled ransomware simulation utility to observe and analyze real-time encryption mechanics, file-system I/O patterns, and endpoint telemetry in an isolated forensic sandbox environment.
+                            </p>
+                            <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5 mb-6">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-500"></i> Simulates high-entropy file writes, mass file renaming & ransom note generation</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-500"></i> Emulates shadow copy deletion checks (<code class="font-mono">vssadmin</code>) & registry persistence</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-500"></i> Correlates Sysmon Event IDs (1, 11, 13, 23), USN Journal & MFT artifacts for EDR tuning</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Ransomware Analysis</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Sysmon & MFT Telemetry</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Behavioral Detection</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: ChainVigil -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/60 transition-all flex flex-col justify-between p-6 sm:p-7 shadow-sm hover:shadow-xl">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                                    Flagship DFIR System
+                                </span>
+                                <i data-lucide="boxes" class="w-5 h-5 text-emerald-500"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                                ChainVigil
+                            </h3>
+                            <p class="text-xs font-mono text-emerald-600 dark:text-emerald-400 mb-3">
+                                A Structured Digital Forensic Investigation System for Software Supply Chain Incidents
+                            </p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                                A Django-based digital forensic investigation framework engineered to systematically track, investigate, and preserve chain-of-custody evidence across compromised software dependencies, build pipelines, and supply chain attacks.
+                            </p>
+                            <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5 mb-6">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Artifact ingestion & integrity hashing (SHA-256 / SBOM verification)</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Dependency compromise timeline reconstruction</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Structured forensic reporting & evidence locker</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Django</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Supply Chain DFIR</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Threat Intel</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Automated IR Playbook Generator -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/60 transition-all flex flex-col justify-between p-6 sm:p-7 shadow-sm hover:shadow-xl">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
+                                    SOC & IR Automation
+                                </span>
+                                <i data-lucide="workflow" class="w-5 h-5 text-cyan-500"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                                Automated Incident Response Playbook Generator
+                            </h3>
+                            <p class="text-xs font-mono text-cyan-600 dark:text-cyan-400 mb-3">
+                                Dynamic Triage & Standard Operating Procedure Engine
+                            </p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                                Designed to streamline Security Operations Center (SOC) workflows by dynamically generating structured, actionable incident response playbooks tailored to specific alert types, M365 BEC incidents, ransomware variants, and threat vectors.
+                            </p>
+                            <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5 mb-6">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-500"></i> Standardized phases: Identification, Containment, Eradication & Recovery</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-500"></i> Reduces analyst triage fatigue during high-severity alerts</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-500"></i> Mapped to NIST SP 800-61 & MITRE ATT&CK response guidelines</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SOC Workflows</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">NIST SP 800-61</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Triage Automation</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: AI Lyrics Generator Web App & Academic Modules -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/60 transition-all flex flex-col justify-between p-6 sm:p-7 shadow-sm hover:shadow-xl">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+                                    AI & Web Engineering
+                                </span>
+                                <i data-lucide="sparkles" class="w-5 h-5 text-purple-500"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                                AI Lyrics Generator Web App & Forensic AI Modules
+                            </h3>
+                            <p class="text-xs font-mono text-purple-600 dark:text-purple-400 mb-3">
+                                Generative AI Web Application & Academic Courseware
+                            </p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                                Created a web application that utilizes an AI model to generate original song lyrics, demonstrating skills in both web development and machine learning, alongside developing academic modules on AI in Forensic Science.
+                            </p>
+                            <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5 mb-6">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-500"></i> <strong>AI Lyrics Generator:</strong> End-to-end ML model integration & web interface</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-500"></i> <strong>AI & Forensic Science:</strong> Deepfakes, pattern & biological evidence</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-500"></i> <strong>Social Network Analysis:</strong> Graph theory & link mapping</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Machine Learning</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Web Development</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">AI in Forensics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS & EXPERTISE MATRIX (INTERACTIVE FILTER) -->
+        <section id="skills" class="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                            <i data-lucide="sliders" class="w-4 h-4"></i> Capabilities Matrix
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Skills, Domains & Interests</h2>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap gap-2" id="skill-filters">
+                        <button onclick="filterSkills('all')" data-filter="all" class="skill-tab active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-emerald-600 text-white transition-all">All Domains</button>
+                        <button onclick="filterSkills('dfir')" data-filter="dfir" class="skill-tab px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/20 transition-all">DFIR & Security</button>
+                        <button onclick="filterSkills('academic')" data-filter="academic" class="skill-tab px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/20 transition-all">Academic & Research</button>
+                        <button onclick="filterSkills('tech')" data-filter="tech" class="skill-tab px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/20 transition-all">Tech & Tools</button>
+                        <button onclick="filterSkills('creative')" data-filter="creative" class="skill-tab px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/20 transition-all">Beyond Cyber</button>
+                    </div>
+                </div>
+
+                <!-- Skills Grid -->
+                <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    
+                    <!-- DFIR Card 1 -->
+                    <div data-category="dfir" class="skill-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3">
+                            <i data-lucide="search-code" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Digital Forensics & Artifact Analysis</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">Disk, memory, OS registry, event logs, and file system forensic acquisition & analysis.</p>
+                    </div>
+
+                    <!-- DFIR Card 2 -->
+                    <div data-category="dfir" class="skill-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3">
+                            <i data-lucide="siren" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Incident Response & SOC Workflows</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">Ransomware triage, breach containment, playbook design, threat hunting, and SIEM alert analysis.</p>
+                    </div>
+
+                    <!-- Academic Card 1 -->
+                    <div data-category="academic" class="skill-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-500 flex items-center justify-center mb-3">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">AI in Forensic Science</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">Applying machine learning and AI for pattern recognition, multimedia authentication, and automated triage.</p>
+                    </div>
+
+                    <!-- Academic Card 2 -->
+                    <div data-category="academic" class="skill-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-500 flex items-center justify-center mb-3">
+                            <i data-lucide="share-2" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Social Network Analysis (SNA)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">Graph theory, nodes/edges modeling, centrality metrics, and community detection in investigations.</p>
+                    </div>
+
+                    <!-- Tech Card 1 -->
+                    <div data-category="tech" class="skill-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="w-9 h-9 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center mb-3">
+                            <i data-lucide="code-2" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Python & Django Development</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">Building custom forensic platforms (ChainVigil), automation scripts, and evidence management tools.</p>
+                    </div>
+
+                    <!-- DFIR / Tech Card 2 -->
+                    <div data-category="dfir" class="skill-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3">
+                            <i data-lucide="cloud-cog" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Cloud Forensics & Cryptography</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">Investigating multi-tenant cloud environments, log correlation, cryptographic hashing, and data integrity.</p>
+                    </div>
+
+                    <!-- Academic Card 3 -->
+                    <div data-category="academic" class="skill-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-500 flex items-center justify-center mb-3">
+                            <i data-lucide="book-open-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Academic Mentorship & Teaching</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">University lecture delivery, lab manual design, research paper guidance, and competitive exam preparation.</p>
+                    </div>
+
+                    <!-- Creative Card -->
+                    <div data-category="creative" class="skill-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center mb-3">
+                            <i data-lucide="clapperboard" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Story Writing & Cinema</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">Passionate about narrative storytelling, screenplay concepts, cinema exploration, and strength training.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    
+                    <!-- Contact Info Column -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                                <i data-lucide="mail" class="w-4 h-4"></i> Connect & Collaborate
+                            </div>
+                            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Get in Touch</h2>
+                            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+                                Open to academic collaborations, guest lectures in Digital Forensics & AI, cybersecurity research partnerships, and DFIR consulting discussions.
+                            </p>
+                        </div>
+
+                        <!-- Contact Cards with Copy-to-Clipboard -->
+                        <div class="space-y-3.5">
+                            <!-- Email Card -->
+                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+                                <div class="flex items-center gap-3.5 min-w-0">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                                        <i data-lucide="mail" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <div class="text-xs font-mono text-slate-500 dark:text-slate-400">Email Address</div>
+                                        <a href="mailto:vasthupulapurna@gmail.com" class="text-sm font-semibold text-slate-900 dark:text-white hover:text-emerald-500 truncate block">
+                                            vasthupulapurna@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+                                <button onclick="copyText('vasthupulapurna@gmail.com', 'Email address')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors shrink-0" title="Copy Email">
+                                    <i data-lucide="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+
+                            <!-- Phone Card -->
+                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center shrink-0">
+                                        <i data-lucide="phone" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-mono text-slate-500 dark:text-slate-400">Mobile / WhatsApp</div>
+                                        <a href="tel:+919347384179" class="text-sm font-semibold text-slate-900 dark:text-white hover:text-cyan-500">
+                                            +91 9347384179
+                                        </a>
+                                    </div>
+                                </div>
+                                <button onclick="copyText('9347384179', 'Phone number')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-cyan-500 transition-colors shrink-0" title="Copy Phone">
+                                    <i data-lucide="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+
+                            <!-- LinkedIn & GitHub Links -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <a href="https://www.linkedin.com/in/purna-sai-vasthupula-983ab7243/" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 flex items-center gap-3 transition-colors">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center shrink-0">
+                                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <div class="text-xs font-mono text-slate-500 dark:text-slate-400">LinkedIn</div>
+                                        <div class="text-sm font-semibold text-slate-900 dark:text-white truncate">purna-sai-vasthupula</div>
+                                    </div>
+                                </a>
+                                <a href="https://github.com/vasthupulasai" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 flex items-center gap-3 transition-colors">
+                            <!-- Affiliation & Location Card -->
+                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-mono text-slate-500 dark:text-slate-400">Institution & Location</div>
+                                    <div class="text-sm font-semibold text-slate-900 dark:text-white">
+                                        Malla Reddy University • Hyderabad / Yadadri Bhongir, Telangana
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- LinkedIn & GitHub Links -->
+                            <div class="grid grid-cols-2 gap-3 pt-1">
+                                <a href="https://www.linkedin.com/in/purna-sai-vasthupula-983ab7243/" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 flex items-center justify-center gap-2 text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition-colors">
+                                    <i data-lucide="linkedin" class="w-4 h-4 text-emerald-500"></i> LinkedIn Profile
+                                </a>
+                                <a href="https://github.com/vasthupulasai" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 flex items-center justify-center gap-2 text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 hover:text-cyan-500 transition-colors">
+                                    <i data-lucide="github" class="w-4 h-4 text-cyan-500"></i> GitHub Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Message Dispatcher Form -->
+                    <div class="lg:col-span-7">
+                        <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Send an Academic or Professional Inquiry</h3>
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6">
+                                Fill out the details below to format a direct email or copy a ready-to-send inquiry message.
+                            </p>
+
+                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-mono uppercase text-slate-600 dark:text-slate-400 mb-1.5">Your Name *</label>
+                                        <input type="text" id="sender-name" required placeholder="Dr. / Prof. / Recruiter Name" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-sm focus:outline-none focus:border-emerald-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-mono uppercase text-slate-600 dark:text-slate-400 mb-1.5">Your Email *</label>
+                                        <input type="email" id="sender-email" required placeholder="you@university.edu" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-sm focus:outline-none focus:border-emerald-500">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-mono uppercase text-slate-600 dark:text-slate-400 mb-1.5">Inquiry Category</label>
+                                    <select id="sender-topic" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-sm focus:outline-none focus:border-emerald-500">
+                                        <option value="Academic Collaboration / Guest Lecture">Academic Collaboration / Guest Lecture</option>
+                                        <option value="Digital Forensics & Incident Response (DFIR)">Digital Forensics & Incident Response (DFIR)</option>
+                                        <option value="Student Mentorship / Project Guidance">Student Mentorship / Project Guidance</option>
+                                        <option value="Research & Publication Inquiry">Research & Publication Inquiry</option>
+                                        <option value="General Connect">General Connect</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-mono uppercase text-slate-600 dark:text-slate-400 mb-1.5">Message *</label>
+                                    <textarea id="sender-message" rows="4" required placeholder="Hello Prof. Purnasai, I would like to connect regarding..." class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-sm focus:outline-none focus:border-emerald-500"></textarea>
+                                </div>
+
+                                <div class="flex flex-wrap items-center gap-3 pt-2">
+                                    <button type="submit" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20 transition-all">
+                                        <i data-lucide="send" class="w-4 h-4"></i>
+                                        Prepare & Send Email
+                                    </button>
+                                    <button type="button" onclick="copyFormattedInquiry()" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition-all">
+                                        <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+                                        Copy Message Text
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>© 2026 <strong class="text-slate-800 dark:text-slate-200">Vasthupula Purnasai</strong> • Assistant Professor, Malla Reddy University</span>
+            </div>
+            <div class="flex items-center gap-4 font-mono">
+                <a href="https://www.linkedin.com/in/purna-sai-vasthupula-983ab7243/" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-500">LinkedIn</a>
+                <a href="https://github.com/vasthupulasai" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-500">GitHub</a>
+                <span>M.Sc. DFIS (NFSU)</span>
+            </div>
+        </div>
+    <!-- PRINTABLE CV / RESUME MODAL (EXACT UPLOADED RESUME: updateddresumeenew.pdf) -->
+    <div id="resume-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm overflow-y-auto p-3 sm:p-6 md:p-10 flex items-start justify-center">
+        <div class="bg-white text-slate-900 rounded-2xl max-w-4xl w-full shadow-2xl overflow-hidden border border-slate-300 my-auto">
+            <!-- Modal Action Bar (Hidden when printing) -->
+            <div class="no-print bg-slate-900 text-white px-5 py-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 sticky top-0 z-10">
+                <div class="flex items-center gap-2.5">
+                    <i data-lucide="file-text" class="w-5 h-5 text-emerald-400"></i>
+                    <div>
+                        <span class="font-mono text-sm font-semibold block leading-none">updateddresumeenew.pdf</span>
+                        <span class="text-[11px] text-slate-400 font-mono">Official Resume — Vasthupula Purnasai</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors shadow">
+                        <i data-lucide="printer" class="w-4 h-4"></i> Print / Save as PDF
+                    </button>
+                    <button onclick="closeResumeModal()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300" title="Close Resume">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Printable Resume Content (Exact Replica of updateddresumeenew.pdf) -->
+            <div id="printable-resume" class="p-6 sm:p-10 md:p-12 space-y-5 text-slate-900 font-sans leading-relaxed bg-white">
+                
+                <!-- Header -->
+                <div class="border-b-2 border-slate-900 pb-3 text-center">
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-wide text-slate-900 uppercase">VASTHUPULA PURNASAI</h1>
+                    <p class="text-xs sm:text-[13px] text-slate-800 mt-1.5 leading-relaxed">
+                        <strong>Mob No.:</strong> 9347384179 &nbsp;|&nbsp;
+                        <strong>Email:</strong> <a href="mailto:vasthupulapurna@gmail.com" class="underline text-blue-700">vasthupulapurna@gmail.com</a> &nbsp;|&nbsp;
+                        <a href="https://www.linkedin.com/in/purna-sai-vasthupula-983ab7243/" target="_blank" class="underline text-blue-700">https://www.linkedin.com/in/purna-sai-vasthupula-983ab7243/</a> &nbsp;|&nbsp;
+                        <a href="https://github.com/vasthupulasai" target="_blank" class="underline text-blue-700">https://github.com/vasthupulasai</a> &nbsp;|&nbsp;
+                        <strong>Address:</strong> 1-1-66/984, Urban Colony, Yadadri Bhongir, Telangana
+                    </p>
+                </div>
+
+                <!-- SUMMARY -->
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-1 mb-2">SUMMARY</h2>
+                    <p class="text-xs sm:text-[13px] text-slate-800 text-justify leading-relaxed">
+                        Motivated M.Sc. Digital Forensics and Information Security student with hands-on experience in Microsoft 365 and Google Workspace security investigations through industry internship experience. Strong foundation in security monitoring, SIEM tools, digital forensics, threat detection, log analysis, and incident response, complemented by practical exposure to Business Email Compromise (BEC) investigations, Unified Audit Logs, mailbox rule analysis, and root cause analysis. Eager to leverage analytical thinking and problem-solving skills in an entry-level SOC, Incident Response, Digital Forensics role to strengthen an organization's cybersecurity posture.
+                    </p>
+                </div>
+
+                <!-- SKILLS -->
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-1 mb-2">SKILLS</h2>
+                    <ul class="list-disc list-inside text-xs sm:text-[13px] text-slate-800 space-y-1.5">
+                        <li><strong>Cybersecurity &amp; Forensics:</strong> Incident Response, Microsoft 365 Security, Google workspace Investigations, Business Email Compromise (BEC), Digital Forensics, Threat Detection, Root cause analysis, Email Header Analysis, Evidence collection and Analysis, OSINT.</li>
+                        <li><strong>Tools &amp; Platforms:</strong> SIEM (Wazuh, Splunk), Wireshark, Kibana, Autopsy, Magnet Axiom, Volatility, FTK.</li>
+                        <li><strong>Programming &amp; Scripting:</strong> Python (Fundamentals), Bash.</li>
+                        <li><strong>Other:</strong> Networking, Linux, Log Analysis, Incident documentation, timeline creation.</li>
+                    </ul>
+                </div>
+
+                <!-- ACADEMIC QUALIFICATION -->
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-1 mb-2.5">ACADEMIC QUALIFICATION</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs sm:text-[13px] text-left border-collapse border border-slate-400">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-900 font-bold">
+                                    <th class="border border-slate-400 px-3 py-1.5">Course / Degree</th>
+                                    <th class="border border-slate-400 px-3 py-1.5">Institution / Board</th>
+                                    <th class="border border-slate-400 px-3 py-1.5">Year</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-800">
+                                <tr>
+                                    <td class="border border-slate-400 px-3 py-1.5 font-medium">M.Sc. Digital Forensics and Information Security</td>
+                                    <td class="border border-slate-400 px-3 py-1.5">National Forensic Sciences University</td>
+                                    <td class="border border-slate-400 px-3 py-1.5">2024-2026</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-400 px-3 py-1.5 font-medium">B.Sc(Honours). Digital Forensics</td>
+                                    <td class="border border-slate-400 px-3 py-1.5">Malla Reddy University</td>
+                                    <td class="border border-slate-400 px-3 py-1.5">2020-2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-400 px-3 py-1.5 font-medium">Intermediate BPC</td>
+                                    <td class="border border-slate-400 px-3 py-1.5">Sree Vaishnavi Junior College</td>
+                                    <td class="border border-slate-400 px-3 py-1.5">2018-2020</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-400 px-3 py-1.5 font-medium">SSC</td>
+                                    <td class="border border-slate-400 px-3 py-1.5">SSC Board of Telangana</td>
+                                    <td class="border border-slate-400 px-3 py-1.5">2018</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- WORK EXPERIENCE / INTERNSHIPS -->
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-1 mb-2.5">WORK EXPERIENCE / INTERNSHIPS</h2>
+                    <div class="space-y-3.5 text-xs sm:text-[13px] text-slate-800">
+                        
+                        <div>
+                            <div class="font-bold text-slate-900">
+                                Cyber Security Intern &nbsp;|&nbsp; Arete IR LLP &nbsp;|&nbsp; 01/2026 - 07/2026
+                            </div>
+                            <ul class="list-disc list-inside mt-1 space-y-1 leading-relaxed">
+                                <li>Investigated Microsoft 365 Business Email Compromise (BEC) and Google Workspace incidents by analyzing authentication logs, email metadata, audit logs, and mailbox artifacts to determine attacker activity, root cause, and incident impact. Analysed Microsoft 365 Unified Audit Logs to identify suspicious user activities.</li>
+                                <li>Performed forensic analysis of Microsoft 365 Unified Audit Logs to identify unauthorized mailbox access, suspicious user activities, and potential account compromise.</li>
+                                <li>Investigated malicious mailbox rules, inbox forwarding, email headers, and message traces to determine phishing techniques and attacker persistence mechanisms.</li>
+                                <li>Conducted root cause analysis by correlating multiple evidence sources, documenting findings, and building investigation timelines.</li>
+                                <li>Assisted senior analysts in incident response, evidence collection, case documentation, and remediation recommendations.</li>
+                                <li>Validated suspicious login events, mailbox access, and configuration changes to accurately determine the scope and impact of security incidents.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <div class="font-bold text-slate-900">
+                                Virtual Internship - CDAC Noida &nbsp;|&nbsp; 01/2025 - 03/2025
+                            </div>
+                            <ul class="list-disc list-inside mt-1 space-y-1 leading-relaxed">
+                                <li>Completed training in ethical hacking and penetration testing.</li>
+                                <li>Gained hands-on experience dealing with real-time cyber threats.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <div class="font-bold text-slate-900">
+                                Intern / Trainee &nbsp;|&nbsp; Clues Team Telangana Police &nbsp;|&nbsp; 01/2023 - 03/2023
+                            </div>
+                            <ul class="list-disc list-inside mt-1 space-y-1 leading-relaxed">
+                                <li>Worked with the clues team, gaining knowledge about traditional crime scenarios such as theft, robbery, and assault. Experience working in team-based investigations.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PROJECTS -->
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-1 mb-2">PROJECTS</h2>
+                    <ul class="list-disc list-inside text-xs sm:text-[13px] text-slate-800 space-y-1.5 leading-relaxed">
+                        <li><strong>Ransomware Simulator and Detection Lab:</strong> Developed a controlled lab environment to simulate ransomware attacks and built detection mechanisms to identify their behavior and indicators.</li>
+                        <li><strong>Automated Incident Response Playbook Generator:</strong> Engineered a system to automatically create incident response playbooks for various threats, streamlining security procedures and response actions.</li>
+                        <li><strong>AI Lyrics Generator Web App:</strong> Created a web application that utilizes an AI model to generate original song lyrics, demonstrating skills in both web development and machine learning.</li>
+                    </ul>
+                </div>
+
+                <!-- CERTIFICATIONS -->
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-1 mb-2">CERTIFICATIONS</h2>
+                    <ul class="list-disc list-inside text-xs sm:text-[13px] text-slate-800 space-y-1 leading-relaxed">
+                        <li><strong>CDAC-NOIDA</strong> - Ethical Hacking and Penetration Testing</li>
+                        <li><strong>Antisyphon Training</strong> - SOC Detection engineering crash course.</li>
+                        <li><strong>Blue Team Labs:</strong>
+                            <ul class="list-disc list-inside pl-5 space-y-0.5 mt-0.5">
+                                <li>Active Defense and Cyber Deception.</li>
+                                <li>Investigation of insider threats with windows forensics.</li>
+                                <li>Hands on Blue Team Exercises.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Security Blue Team</strong> - OSINT Fundamentals.</li>
+                    </ul>
+                </div>
+
+                <!-- DECLARATION -->
+                <div class="pt-3 border-t border-slate-300">
+                    <p class="text-xs sm:text-[13px] italic text-slate-800">
+                        I hereby declare that the information provided in this resume is true and correct to the best of my knowledge and belief.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+
+        function updateThemeIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
+        updateThemeIcons();
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            document.documentElement.classList.toggle('light');
+            updateThemeIcons();
+        });
+
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Interactive Forensic Terminal Commands
+        const terminalData = {
+            whoami: {
+                cmd: 'whoami --verbose',
+                html: `
+                    <div><span class="text-emerald-400">Name:</span> Vasthupula Purnasai</div>
+                    <div><span class="text-emerald-400">Current Role:</span> Assistant Professor @ Malla Reddy University</div>
+                    <div><span class="text-emerald-400">Location:</span> Hyderabad / Yadadri Bhongir, Telangana</div>
+                    <div><span class="text-emerald-400">Alma Mater:</span> NFSU Gandhinagar (M.Sc.) & Malla Reddy University (B.Sc. Hons)</div>
+                    <div><span class="text-emerald-400">Specialization:</span> Digital Forensics, Incident Response, SOC & AI in Forensics</div>
+                `
+            },
+            faculty: {
+                cmd: 'faculty --status --institution="Malla Reddy University"',
+                html: `
+                    <div><span class="text-cyan-400">[ROLE]</span> Assistant Professor, Dept. of Digital Forensics</div>
+                    <div><span class="text-cyan-400">[TEACHING]</span> AI in Forensic Science, Social Network Analysis, Core DFIR</div>
+                    <div><span class="text-cyan-400">[FOCUS]</span> Bridging academic research with real-world SOC & IR operations</div>
+                `
+            },
+            dfir: {
+                cmd: 'dfir --history --org="Arete IR"',
+                html: `
+                    <div><span class="text-emerald-400">[ORG]</span> Arete Incident Response (Hyderabad)</div>
+                    <div><span class="text-emerald-400">[TENURE]</span> Jan 2026 – Jul 2026 (6 Months Internship)</div>
+                    <div><span class="text-emerald-400">[OPS]</span> Ransomware triage, M365 BEC investigations, forensic artifact analysis & threat hunting</div>
+                `
+            },
+            m365: {
+                cmd: 'cloud --investigate --tenant="Microsoft-365"',
+                html: `
+                    <div><span class="text-cyan-400">[UAL / PURVIEW]</span> MailItemsAccessed, UpdateInboxRules, FileDownloaded, OAuth consent abuse</div>
+                    <div><span class="text-cyan-400">[ENTRA ID]</span> Impossible travel, AiTM token replay, rogue ASN correlation & MFA bypass</div>
+                    <div><span class="text-cyan-400">[TOOLING]</span> Microsoft Extractor Suite, Hawk, ExchangeOnlineManagement, Sentinel KQL</div>
+                `
+            },
+            tools: {
+                cmd: 'tools --list --proficiency',
+                html: `
+                    <div><span class="text-emerald-400">[DISK/ARTIFACT]</span> KAPE, Eric Zimmerman EZ Tools, Autopsy, EnCase, FTK Imager, Velociraptor</div>
+                    <div><span class="text-cyan-400">[MEMORY/LIVE]</span> Volatility 3, WinPMEM, DumpIt, Sysinternals Suite, Sysmon, Hayabusa</div>
+                    <div><span class="text-purple-400">[SIEM/EDR/NET]</span> CrowdStrike Falcon, SentinelOne, Splunk, Wireshark, YARA, PEStudio</div>
+                `
+            },
+            projects: {
+                cmd: 'ls -la ./projects',
+                html: `
+                    <div><span class="text-rose-400">drwxr-xr-x</span> <strong>Ransomware-Simulator/</strong> — Safe Ransomware Telemetry & I/O Behavior Lab</div>
+                    <div><span class="text-emerald-400">drwxr-xr-x</span> <strong>ChainVigil/</strong> — Django Software Supply Chain DFIR System</div>
+                    <div><span class="text-cyan-400">drwxr-xr-x</span> <strong>IR-Playbook-Gen/</strong> — Automated SOC Incident Response Playbook Generator</div>
+                    <div><span class="text-purple-400">drwxr-xr-x</span> <strong>Academic-Modules/</strong> — AI in Forensics, Cloud & SNA Courseware</div>
+                `
+            },
+            contact: {
+                cmd: 'cat ./contact_card.vcf',
+                html: `
+                    <div><span class="text-emerald-400">Email:</span> vasthupulapurna@gmail.com</div>
+                    <div><span class="text-emerald-400">Phone:</span> +91 9347384179</div>
+                    <div><span class="text-emerald-400">LinkedIn:</span> linkedin.com/in/purna-sai-vasthupula-983ab7243</div>
+                    <div><span class="text-emerald-400">GitHub:</span> github.com/vasthupulasai</div>
+                    <div><span class="text-emerald-400">Address:</span> 1-1-66/984, Urban Colony, Yadadri Bhongir, Telangana</div>
+                `
+            }
+        };
+
+        function runTerminalCmd(key) {
+            const cmdEl = document.getElementById('terminal-cmd-text');
+            const respEl = document.getElementById('terminal-response');
+            const entry = terminalData[key];
+            if (!entry) return;
+            cmdEl.textContent = entry.cmd;
+            respEl.innerHTML = entry.html;
+        }
+
+        // Skills Matrix Filter
+        function filterSkills(category) {
+            document.querySelectorAll('.skill-tab').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.className = 'skill-tab active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-emerald-600 text-white transition-all';
+                } else {
+                    btn.className = 'skill-tab px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/20 transition-all';
+                }
+            });
+
+            document.querySelectorAll('.skill-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Copy to Clipboard Helper (iframe-safe)
+        function copyText(text, label) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(`${label} copied to clipboard!`);
+            } catch (err) {
+                showToast(`Could not copy ${label}`);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'px-4 py-3 rounded-xl bg-slate-900 dark:bg-emerald-600 text-white text-xs font-mono shadow-xl border border-slate-700 flex items-center gap-2 transition-all duration-300';
+            toast.innerHTML = `<span>✓</span> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2600);
+        }
+
+        // Contact Form Handlers
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('sender-name').value.trim();
+            const email = document.getElementById('sender-email').value.trim();
+            const topic = document.getElementById('sender-topic').value;
+            const message = document.getElementById('sender-message').value.trim();
+
+            const subject = encodeURIComponent(`[Portfolio Inquiry - ${topic}] from ${name}`);
+            const body = encodeURIComponent(`Hello Prof. Vasthupula Purnasai,\n\n${message}\n\nBest regards,\n${name}\n${email}`);
+            window.location.href = `mailto:Vasthupulapurna@gmail.com?subject=${subject}&body=${body}`;
+            showToast('Opening your email client...');
+        }
+
+        function copyFormattedInquiry() {
+            const name = document.getElementById('sender-name').value.trim() || '[Your Name]';
+            const email = document.getElementById('sender-email').value.trim() || '[Your Email]';
+            const topic = document.getElementById('sender-topic').value;
+            const message = document.getElementById('sender-message').value.trim() || '[Message]';
+
+            const formatted = `To: Vasthupulapurna@gmail.com\nSubject: [${topic}] Inquiry from ${name}\n\nHello Prof. Vasthupula Purnasai,\n\n${message}\n\nRegards,\n${name} (${email})`;
+            copyText(formatted, 'Formatted inquiry');
+        }
+
+        // Printable CV Modal
+        function openResumeModal() {
+            document.getElementById('resume-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResumeModal() {
+            document.getElementById('resume-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close modals on Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeResumeModal();
+            }
+        });
+    </script>
+</body>
+</html>
